@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>样式</title>
+
+    <style type="text/css">
+        #box1 {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            padding: 10px;
+            border: 10px solid yellow;
+        }
+
+        #box2 {
+            width: 200px;
+            height: 300px;
+            background-color: #ffa;
+            overflow: auto;
+        }
+
+        #box3 {
+            width: 150px;
+            height: 600px;
+            background-color: rebeccapurple;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var box1 = document.getElementById("box1");
+            var btn1 = document.getElementById("btn01");
+
+            var box2 = document.getElementById("box2");
+            var box3 = document.getElementById("box3");
+
+            btn1.onclick = function () {
+                // 1.获取可见高度,包括内容区和内边距，不包括边框；
+                // 2.属性只读，不可修改；
+                console.log(box1.clientHeight); //输出220
+
+                //获取整个元素的高度，包括边框；
+                console.log(box1.offsetHeight); //输出240
+
+                //offsetTop 当前元素相对于其定位父元素的垂直偏移量
+                console.log(box1.offsetTop);
+
+                //scrollHeight：获取元素整个滚动高度
+                console.log("box2: scrollHeight:" + box2.scrollHeight); //600
+                console.log("box2: clientHeight:" + box2.clientHeight); //300;
+
+                //scrollTop：获取垂直滚动条滚动的距离
+                console.log("box2: scrollTop:"+box2.scrollTop);
+            };
+
+            //scrollHeight - scrollTop = clientHeight 表示滚动到底部
+            box2.onscroll = function (){
+              if (box2.scrollHeight-box2.scrollTop === box2.clientHeight){
+                  alert("滑动到底部");
+              }
+            };
+        };
+
+    </script>
+
+</head>
+<body>
+<div id="box1"></div>
+<br/>
+<br/>
+<div id="box2">
+    <div id="box3"></div>
+</div>
+
+<br/>
+<br/>
+<button id="btn01">按钮1</button>
+</body>
+</html>
